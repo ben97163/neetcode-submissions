@@ -1,0 +1,9 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        dp = [0] * len(nums)
+        if len(nums) < 2:
+            return nums[0]
+        dp[-1], dp[-2] = nums[-1], max(nums[-1], nums[-2])
+        for i in range(len(nums)-3, -1, -1):
+            dp[i] = max(nums[i]+dp[i+2], dp[i+1])
+        return dp[0]
